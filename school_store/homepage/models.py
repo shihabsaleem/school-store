@@ -19,13 +19,12 @@ class Department(models.Model):
         return '{}'.format(self.name)
 
 class Course(models.Model):
-    name = models.CharField(max_length=250, unique=True)
-    slug = models.SlugField(max_length=250, unique=True)
+    name = models.CharField(max_length=150, unique=True)
     dept = models.ForeignKey(Department, on_delete=models.CASCADE)
     seats = models.IntegerField()
 
     def get_url(self):
-        return reverse('homepage:ProCatDetail', args=[self.dept.slug, self.slug])
+        return reverse('homepage:course', args=[self.dept.slug, self.slug])
 
     class Meta:
         ordering = ('name',)
