@@ -24,7 +24,7 @@ Scholar
                 <div data-aos="fade-up" data-aos-delay="600">
                     <div class="text-center text-lg-start">
                         <a class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center"
-                           href="#about">
+                           href="{% url 'homepage:home' %}#about">
                             <span>Get Started</span>
                             <i class="bi bi-arrow-right"></i>
                         </a>
@@ -58,7 +58,7 @@ Scholar
                         </p>
                         <div class="text-center text-lg-start">
                             <a class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center"
-                               href="#">
+                               href="{% url 'homepage:home' %}#">
                                 <span>Read More</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -239,7 +239,7 @@ Scholar
                         <span class="post-date">Tue, September 15</span>
                         <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur
                             sit</h3>
-                        <a class="readmore stretched-link mt-auto" href="blog-single.html"><span>Read More</span><i
+                        <a class="readmore stretched-link mt-auto" href="{% url 'homepage:home' %}"><span>Read More</span><i
                                 class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
@@ -249,7 +249,7 @@ Scholar
                         <div class="post-img"><img alt="" class="img-fluid" src="{% static 'img/blog/blog-2.jpg' %}"></div>
                         <span class="post-date">Fri, August 28</span>
                         <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
-                        <a class="readmore stretched-link mt-auto" href="blog-single.html"><span>Read More</span><i
+                        <a class="readmore stretched-link mt-auto" href="{% url 'homepage:home' %}"><span>Read More</span><i
                                 class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
@@ -259,7 +259,7 @@ Scholar
                         <div class="post-img"><img alt="" class="img-fluid" src="{% static 'img/blog/blog-3.jpg' %}"></div>
                         <span class="post-date">Mon, July 11</span>
                         <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
-                        <a class="readmore stretched-link mt-auto" href="blog-single.html"><span>Read More</span><i
+                        <a class="readmore stretched-link mt-auto" href="{% url 'homepage:home' %}"><span>Read More</span><i
                                 class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
@@ -339,9 +339,6 @@ Scholar
                             </div>
 
                             <div class="col-md-12 text-center">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
 
                                 <button type="submit">Send Message</button>
                             </div>

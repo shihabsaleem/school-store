@@ -9,7 +9,7 @@
 
         <nav class="navbar" id="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                <li><a class="nav-link scrollto active" href="{% url 'homepage:home' %}#hero">Home</a></li>
                 <li><a class="nav-link scrollto" href="#about">About</a></li>
                 <li class="dropdown"><a href="#"><span>Departments</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -21,7 +21,7 @@
                 </li>
 
                 {% if user.is_authenticated %}
-                <li><a class="nav-link scrollto" href="#about">hi,{{user.username}}</a></li>
+                <li><a class="nav-link scrollto" href="{% url 'homepage:home' %}#hero">hi,{{user.username}}</a></li>
                 <li><a class="getstarted scrollto" href="{% url 'credential:logout' %}">Logout</a></li>
                 {% else %}
                 <li><a class="getstarted scrollto" href="{% url 'credential:login' %}">Login</a></li>
