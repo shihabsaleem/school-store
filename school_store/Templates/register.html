@@ -3,45 +3,25 @@
 
 {% block content %}
 <section class="contact">
-
-    <div class="container" data-aos="fade-up">
-
-        <header class="section-header">
-            <p>Register</p>
+   <div class="container">
+       <header class="section-header">
+            <p>Sign Up</p>
         </header>
 
-        <div class="row justify-content-center">
-
-            <div class="col-lg-6">
-                <form action="register" class="php-email-form text-center" method="post">
-                    {% csrf_token %}
-                    <div class="row gy-4 justify-content-center">
-
-                        <div class="col-md-8">
-                            <input class="form-control" name="uname" placeholder="User Name" required type="text">
-                        </div>
-                        <div class="col-md-8">
-                            <input class="form-control" name="pwd" placeholder="Password" required type="password">
-                        </div>
-                        <div class="col-md-8">
-                            <input class="form-control" name="cpwd" placeholder="Confirm Password" required type="password">
-                        </div>
-
-                        <div class="col-md-8 text-center">
-                            <input class="btn btn-primary" type="submit">
-                        </div>
-                        <div class="col-md-8 text-center">
-                            <p>Have an account? <a href="#">Sign In </a></p>
-                        </div>
-
-                    </div>
-                </form>
-
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="form-container" data-aos="fade-up">
+                    <form  action="{% url 'credential:register' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" class="form-control mb-3" placeholder="Username" name="uname" required>
+                        <input type="password" class="form-control mb-3" placeholder="Password" name="pwd" required>
+                        <input type="password" class="form-control mb-3" placeholder="Confirm Password" name="cpwd" required>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+                <p>Have an account? <a href="{% url 'credential:login' %}">Sign In</a></p>
             </div>
-
         </div>
-
     </div>
-
 </section>
 {% endblock %}

@@ -12,15 +12,15 @@ def register(request):
         if pwd == cpwd:
             if User.objects.filter(username=uname).exists():
                 messages.info(request, "Username already taken")
-                return redirect('register')
+                return redirect('credential:register')
             else:
                 usr = User.objects.create_user(username=uname, password=pwd)
                 usr.save()
                 messages.success(request, "User created successfully!")
-                return redirect('login')
+                return redirect('credential:login')
         else:
             messages.error(request, "Passwords do not match")
-            return redirect('register')
+            return redirect('credential:register')
     return render(request, "register.html")
 
 def login(request):
@@ -35,7 +35,7 @@ def login(request):
             return redirect('/')
         else:
             messages.error(request, 'Invalid credentials')
-            return redirect('login')
+            return redirect('credential:login')
     return render(request, "login.html")
 
 def logout(request):
