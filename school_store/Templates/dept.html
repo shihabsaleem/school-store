@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block metadescription %}
+School Store
+{% endblock %}
+
+{% block title %}
+Scholar
+{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+    <div class="row">
+        <div class="col-md-6" data-aos="fade-right">
+            <h2>Welcome to {{dept_page.name}}</h2>
+
+        </div>
+        <div class="col-md-6" data-aos="fade-left">
+            <img alt="{{dept_page.name}}" class="img-fluid" src="{{dept_page.img.url}}">
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12" data-aos="fade-up">
+            <h3>About Us</h3>
+            <p>{{dept_page.desc}}</p></div>
+
+    </div>
+</section>
+{% endblock %}

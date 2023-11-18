@@ -7,6 +7,7 @@ class Department(models.Model):
     desc = models.TextField(blank=True)
     img = models.ImageField(upload_to='dept', blank=True)
 
+
     class Meta:
         ordering = ('name',)
         verbose_name = 'department'
@@ -14,22 +15,6 @@ class Department(models.Model):
 
     def get_url(self):
         return reverse('homepage:dept', args=[self.slug])
-
-    def __str__(self):
-        return '{}'.format(self.name)
-
-class Course(models.Model):
-    name = models.CharField(max_length=150, unique=True)
-    dept = models.ForeignKey(Department, on_delete=models.CASCADE)
-    seats = models.IntegerField()
-
-    def get_url(self):
-        return reverse('homepage:course', args=[self.dept.slug, self.slug])
-
-    class Meta:
-        ordering = ('name',)
-        verbose_name = 'course'
-        verbose_name_plural = 'courses'
 
     def __str__(self):
         return '{}'.format(self.name)
