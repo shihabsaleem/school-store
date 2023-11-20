@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 
+
 class Department(models.Model):
     name = models.CharField(max_length=75, unique=True)
     slug = models.SlugField(max_length=150, unique=True)

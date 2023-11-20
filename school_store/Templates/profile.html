@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+School Store
+{% endblock %}
+
+{% block title %}
+Scholar
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            {% if user.is_authenticated %}
+            <div class="col-12">
+                <h1>Hi, {{user.username}}</h1>
+                <a class="btn btn-primary" href="{% url 'homepage:form' %}">Query Form</a>
+                <a class="btn btn-primary mr-2" href="{% url 'credential:logout' %}">Logout</a>
+
+            </div>
+            {% else %}
+            <div class="col-12">
+                <a class="btn btn-primary mr-2" href="{% url 'credential:login' %}">Login</a>
+                <a class="btn btn-primary" href="{% url 'credential:register' %}">Register</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

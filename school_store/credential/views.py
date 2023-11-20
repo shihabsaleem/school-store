@@ -32,7 +32,7 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)
-            return redirect('homepage:form')
+            return redirect('homepage:profile')
         else:
             messages.error(request, 'Invalid credentials')
             return redirect('credential:login')

@@ -56,3 +56,8 @@ def add_info(request):
         infodata.save()
 
     return render(request, 'success.html')
+
+
+
+def profile(request):
+    return render(request,'profile.html')

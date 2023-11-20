@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'homepage',
     'credential',
+    'smart_selects',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
