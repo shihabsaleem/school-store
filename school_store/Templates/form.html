@@ -103,8 +103,8 @@ Scholar
                     {% for material in material_link %}
                     <div class="col-md-4">
                         <div class="form-check">
-                            <input class="form-check-input" name="material" type="checkbox" value="{{material.name}}">
-                            <label class="form-check-label">{{material.name}}</label>
+                            <input class="form-check-input" name="materials[]" type="checkbox" value="{{ material.id }}">
+                <label class="form-check-label">{{ material.name }}</label>
                         </div>
                     </div>
                     {% endfor %}

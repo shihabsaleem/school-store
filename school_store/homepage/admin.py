@@ -11,14 +11,14 @@ admin.site.register(Department, DepartmentAdmin)
 
 
 class InfoAdmin(admin.ModelAdmin):
-    list_display = ['name', 'age', 'phone', 'email', 'department', 'course']
-
+    list_display = ['name', 'phone', 'department', 'course', 'material', 'purpose']
 
 admin.site.register(InfoDet, InfoAdmin)
 
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ['name', 'department', ]
+
 
 admin.site.register(Material)
 

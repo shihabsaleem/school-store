@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
+
 class Department(models.Model):
     name = models.CharField(max_length=75, unique=True)
     slug = models.SlugField(max_length=150, unique=True)
@@ -54,7 +55,7 @@ class InfoDet(models.Model):
         ('Return', 'Return'),
     ]
     purpose = models.CharField(max_length=50, choices=PURPOSE_CHOICES)
-    material = models.ManyToManyField(Material)
+    material = models.CharField(max_length=100, blank=False)
 
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)

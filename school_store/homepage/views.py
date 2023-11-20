@@ -25,6 +25,7 @@ def form(request):
 
     return render(request, 'form.html', {'departments': departments, 'materials': materials})
 
+
 def add_info(request):
     if request.method == 'POST':
         # Retrieve form data
@@ -38,29 +39,20 @@ def add_info(request):
         purpose = request.POST.get('purpose')
         department_id = request.POST.get('department')
         course_id = request.POST.get('course')
-        materials = request.POST.getlist('materials')
+        material_id = request.POST.getlist('materials[]')
 
-        # Retrieve Department and Course instances
+        material_names = ','.join([get_object_or_404(Material, id=mat_id).name for mat_id in material_id])
+
+        # for mat in material_id:
+        #     material = get_object_or_404(Material, id=mat)
+        #     material = ','.join(material)
+
+
         department = get_object_or_404(Department, id=department_id)
         course = get_object_or_404(Course, id=course_id)
 
-        # Create InfoDet instance and save
-        infodata = InfoDet(
-            name=name,
-            dob=dob,
-            age=age,
-            gender=gender,
-            phone=phone,
-            email=email,
-            address=address,
-            purpose=purpose,
-            department=department,
-            course=course
-        )
+        infodata = InfoDet(name=name, dob=dob, age=age, gender=gender, phone=phone, email=email, address=address,
+                           purpose=purpose, material=material_names, department=department, course=course)
         infodata.save()
-
-        # Retrieve Material objects associated with selected materials
-        materials_objs = Material.objects.filter(name__in=materials)
-        infodata.material.add(*materials_objs)
 
     return render(request, 'success.html')
