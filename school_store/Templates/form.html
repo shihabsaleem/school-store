@@ -71,12 +71,7 @@ Scholar
                 <div class="col-md-6">
                     <div class="form-group mt-3">
                         <label for="department">Department</label>
-                        <!--                        <select class="form-control" name="department">-->
-                        <!--                            {% for dept in dept_link %}-->
-                        <!--                            <option value="{{dept.id}}">{{dept.name}}</option>-->
-                        <!--                            {% endfor %}-->
-                        <!--                        </select>-->
-                        <select class="form-control" id="department" name="department">
+                        <select class="form-control" id="department" required name="department">
                             <option value="">Select Department</option>
                             {% for dept in departments %}
                             <option value="{{ dept.id }}">{{ dept.name }}</option>
@@ -87,7 +82,7 @@ Scholar
                 <div class="col-md-6">
                     <div class="form-group mt-3">
                         <label for="course">Course</label>
-                        <select class="form-control" id="course" name="course">
+                        <select required class="form-control" id="course" name="course">
                             <option value="">Select Course</option>
                             {% for course in course_link %}
                             <option value="{{course.id}}">{{course.name}}</option>
@@ -99,7 +94,8 @@ Scholar
 
             <div class="form-group mt-3">
                 <label for="purpose">Purpose</label>
-                <select class="form-control" name="purpose">
+                <select class="form-control" required name="purpose">
+                    <option value="">------------</option>
                     <option value="Enquiry">Enquiry</option>
                     <option value="Place Order">Place Order</option>
                     <option value="Return">Return</option>
@@ -147,9 +143,10 @@ Scholar
             success: function (data) {
                 $("#course").empty(); // Clear previous options
                 $.each(data.courses, function (key, value) {
-                    $("#course").append('<option value="' + key + '">' + value + '</option>');
+                    $("#course").append('<option value="' + key + '">' + value.name + '</option>');
                 });
             },
+
             error: function () {
                 alert("An error occurred while fetching courses.");
             }

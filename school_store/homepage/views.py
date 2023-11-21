@@ -43,10 +43,6 @@ def add_info(request):
 
         material_names = ','.join([get_object_or_404(Material, id=mat_id).name for mat_id in material_id])
 
-        # for mat in material_id:
-        #     material = get_object_or_404(Material, id=mat)
-        #     material = ','.join(material)
-
 
         department = get_object_or_404(Department, id=department_id)
         course = get_object_or_404(Course, id=course_id)
