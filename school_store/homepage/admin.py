@@ -23,3 +23,4 @@ class CourseAdmin(admin.ModelAdmin):
 admin.site.register(Material)
 
 admin.site.register(Course, CourseAdmin)
+

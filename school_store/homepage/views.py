@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Department, Course, InfoDet, Material
 
@@ -61,3 +61,9 @@ def add_info(request):
 
 def profile(request):
     return render(request,'profile.html')
+
+
+def load_course(request):
+    dept_id = request.GET.get('department_id')
+    courses = Course.objects.filter(department_id=dept_id).values('id', 'name')  # Assuming Course model has 'id' and 'name' fields
+    return JsonResponse({'courses': list(courses)})

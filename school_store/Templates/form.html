@@ -12,7 +12,9 @@ Scholar
 {% block content %}
 <section>
     <div class="container mt-5">
-        <form data-aos="fade-up" data-aos-duration="800" action="{% url 'homepage:success' %}" enctype="multipart/form-data" method="POST">
+        <form action="{% url 'homepage:success' %}" data-aos="fade-up" data-aos-duration="800"
+              data-cities-url="{% url 'homepage:ajax_load_course' %}"
+              enctype="multipart/form-data" id="sForm" method="POST">
             {% csrf_token %}
             <div class="row">
                 <div class="col-md-6">
@@ -39,7 +41,8 @@ Scholar
                 <div class="col-md-6">
                     <div class="form-group mt-3">
                         <label for="gender">Gender</label>
-                        <select class="form-control" name="gender">
+                        <select class="form-control" name="gender" onchange="populateCourses()">
+                            <option value="">Select Gender</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
                             <option value="N">Prefer Not to Say</option>
@@ -68,9 +71,15 @@ Scholar
                 <div class="col-md-6">
                     <div class="form-group mt-3">
                         <label for="department">Department</label>
-                        <select class="form-control" name="department">
-                            {% for dept in dept_link %}
-                            <option value="{{dept.id}}">{{dept.name}}</option>
+                        <!--                        <select class="form-control" name="department">-->
+                        <!--                            {% for dept in dept_link %}-->
+                        <!--                            <option value="{{dept.id}}">{{dept.name}}</option>-->
+                        <!--                            {% endfor %}-->
+                        <!--                        </select>-->
+                        <select class="form-control" id="department" name="department">
+                            <option value="">Select Department</option>
+                            {% for dept in departments %}
+                            <option value="{{ dept.id }}">{{ dept.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -78,7 +87,8 @@ Scholar
                 <div class="col-md-6">
                     <div class="form-group mt-3">
                         <label for="course">Course</label>
-                        <select class="form-control" name="course">
+                        <select class="form-control" id="course" name="course">
+                            <option value="">Select Course</option>
                             {% for course in course_link %}
                             <option value="{{course.id}}">{{course.name}}</option>
                             {% endfor %}
@@ -103,8 +113,9 @@ Scholar
                     {% for material in material_link %}
                     <div class="col-md-4">
                         <div class="form-check">
-                            <input class="form-check-input" name="materials[]" type="checkbox" value="{{ material.id }}">
-                <label class="form-check-label">{{ material.name }}</label>
+                            <input class="form-check-input" name="materials[]" type="checkbox"
+                                   value="{{ material.id }}">
+                            <label class="form-check-label">{{ material.name }}</label>
                         </div>
                     </div>
                     {% endfor %}
@@ -119,5 +130,33 @@ Scholar
 
     </div>
 </section>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#department").change(function () {
+        const url = $("#sForm").attr("data-cities-url");  // Get the URL for loading courses
+        const deptId = $(this).val();  // Get the selected department ID
+
+        $.ajax({
+            url: url,
+            data: {
+                'department_id': deptId
+            },
+            dataType: 'json',  // Ensure expected response type is JSON
+            success: function (data) {
+                $("#course").empty(); // Clear previous options
+                $.each(data.courses, function (key, value) {
+                    $("#course").append('<option value="' + key + '">' + value + '</option>');
+                });
+            },
+            error: function () {
+                alert("An error occurred while fetching courses.");
+            }
+        });
+
+    });
+</script>
+
 
 {% endblock %}
